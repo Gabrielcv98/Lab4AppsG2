@@ -82,6 +82,7 @@ public class IniciarSesion extends Fragment {
 
     View vista;
     Button btnIniciarSesion;
+    Button btnRegistrar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,20 +90,38 @@ public class IniciarSesion extends Fragment {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_iniciar_sesion, container, false);
         btnIniciarSesion = (Button) vista.findViewById(R.id.buttonIniciarSesionPri);
+        btnRegistrar = (Button) vista.findViewById(R.id.buttonRegistrarseInicio);
 
         btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               EditText editTextMail = vista.findViewById(R.id.editTextMailSesion);
+               EditText editTextMail = vista.findViewById(R.id.editTextSesion);
                String mail = editTextMail.getText().toString();
-               EditText editTextContra = vista.findViewById(R.id.editTextTextPasswordInicio);
+               EditText editTextContra = vista.findViewById(R.id.editTextTextPassword);
                String contra = editTextContra.getText().toString();
                MainActivity m1 = (MainActivity) getActivity();
                m1.recibirSesion(mail, contra);
             }
         });
 
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registrar_usuario();
+            }
+        });
+
         return vista;
+    }
+
+    void registrar_usuario(){
+        Registro fr=new Registro();
+        //fr.setArguments(fr);
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.esc_reutilizable,fr)
+                .addToBackStack(null)
+                .commit();
+
     }
 
    /* public boolean isInternetAvailable() {

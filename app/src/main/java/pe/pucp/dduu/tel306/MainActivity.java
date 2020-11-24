@@ -2,6 +2,7 @@ package pe.pucp.dduu.tel306;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.esc_reutilizable, new IniciarSesion()).commit();
 
 
     }
