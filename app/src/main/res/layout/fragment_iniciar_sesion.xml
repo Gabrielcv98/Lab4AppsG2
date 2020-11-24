@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contrasenaInicio"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IniciarSesion">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Democracia para todos"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="510dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewMailSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MAIL"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextMailSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ingrese su mail"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textViewContraSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONTRASEÑA"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextTextPasswordInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ingrese su contraseña"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/buttonIniciarSesionPri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar sesión" />
+
+        <Button
+            android:id="@+id/buttonRegistrarseInicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registrarse"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+</FrameLayout>
