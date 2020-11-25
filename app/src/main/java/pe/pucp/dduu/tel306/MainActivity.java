@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                                      FileWriter fileWriter = new FileWriter(fileOutputStream.getFD());)
                                 {
                                     fileWriter.write(objres.toString());
-                                    Intent i = new Intent(getApplicationContext(), MainActivity2.class);
+                                    Intent i = new Intent(getApplicationContext(), PreguntasActivity.class);
                                     i.putExtras(parametros);
                                     startActivity(i);
                                 } catch (IOException e) {
@@ -144,8 +144,6 @@ public class MainActivity extends AppCompatActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
-
 
                         }
                     }, new Response.ErrorListener() {
