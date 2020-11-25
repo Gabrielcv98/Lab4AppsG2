@@ -48,15 +48,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void agregarFragmentoRegistro(View view){
+
+
+
+
+    public void entrarActividad(View view){
+        Intent intent = new Intent(this,PreguntasActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void agregarFragmentoRegistro(){
         BlankFragmentRegistro blankFragmentRegistro = BlankFragmentRegistro.newInstance();
 
         FragmentManager supportFragmentManager = getSupportFragmentManager();
 
+
         FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
 
-        fragmentTransaction.add(R.id.fragmentContainer,blankFragmentRegistro);
-        fragmentTransaction.commit();
+        fragmentTransaction.replace(R.id.fragmentContainer,blankFragmentRegistro);
 
 
     }
@@ -138,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
 
         }
+
     }
 
 
