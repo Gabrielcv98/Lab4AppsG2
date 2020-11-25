@@ -1,8 +1,13 @@
 package pe.pucp.dduu.tel306;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +17,9 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+
+import android.view.View;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +46,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -52,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void recibirSesion (String data){
 
+    public void recibirSesion (String data){
         if(isInternetAvailable()){
             final String datos = data;
             RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -216,6 +225,8 @@ public class MainActivity extends AppCompatActivity {
             return false;
 
         }
+
     }
+
 
 }

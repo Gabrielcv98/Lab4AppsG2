@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".PreguntasActivity">
 
+    <FrameLayout
+        android:id="@+id/containerPreguntas"
+        android:layout_width="633dp"
+        android:layout_height="651dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/obtenerPreguntas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="obtenerPreguntas"
+        android:text="obtenerPreguntas"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="71dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
