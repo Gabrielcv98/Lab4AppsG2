@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,11 +52,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void recibirSesion (final String mail, final String contra){
-        final String mailSesion = mail;
-        String contraSesion = contra;
+    public void recibirSesion (String data){
 
         if(isInternetAvailable()){
+            final String datos = data;
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             String url = "http://34.236.191.118:3000/api/v1/users/login";
 
@@ -55,26 +63,51 @@ public class MainActivity extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Intent intent = new Intent(MainActivity.this, PreguntasActivity.class);
-                            startActivity(intent);
+                            try {
+                                Log.d("respuesta",response);
+                                JSONObject objres=new JSONObject(response);
+                                String logueo = "Se inició sesión exitosamente";
+                                Toast.makeText(getApplicationContext(),logueo,Toast.LENGTH_LONG).show();
+                                String id = objres.get("id").toString();
+                                Bundle parametros = new Bundle();
+                                parametros.putString("id", id);
+
+                                try (FileOutputStream fileOutputStream = openFileOutput("archivo.json",Context.MODE_PRIVATE);
+                                     FileWriter fileWriter = new FileWriter(fileOutputStream.getFD());)
+                                {
+                                    fileWriter.write(objres.toString());
+                                    Intent i = new Intent(getApplicationContext(), MainActivity2.class);
+                                    i.putExtras(parametros);
+                                    startActivity(i);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                            } catch (JSONException e) {
+                                Toast.makeText(getApplicationContext(),"Server Error",Toast.LENGTH_LONG).show();
+                            }
                         }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Intent intent = new Intent(MainActivity.this, PreguntasActivity.class);
-                            startActivity(intent);
-                        }
-                    })
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "no se logueo", Toast.LENGTH_SHORT).show();
+                }
+            })
             {
                 @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    HashMap<String, String> parametros = new HashMap<>();
-
-                    parametros.put("username", mail);
-                    parametros.put("password", contra);
-                    return parametros;
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
                 }
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return datos == null ? null : datos.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        return null;
+                    }
+                }
+
             };
 
             requestQueue.add(stringRequest);
@@ -82,9 +115,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void datosRegistro (final String nombre, final String mail, final String contra){
+    public void datosRegistro (final String data){
 
         if(isInternetAvailable()){
+            final String savedata= data;
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             String url = "http://34.236.191.118:3000/api/v1/users/new";
 
@@ -92,42 +126,58 @@ public class MainActivity extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            //Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                            //startActivity(intent);
-                            Log.d("respuesta", response);
-                            Toast.makeText(getApplicationContext(), "Se registró usuario correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Registro finalizado exitosamente", Toast.LENGTH_SHORT).show();
+                            Log.d("respuesta",response);
+                            Log.d("datos mandados", data);
+                            try {
+                                JSONObject objres=new JSONObject(data);
+                                reformarDatosParaLogin(objres);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
 
                         }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            //Log.d("error", error.getLocalizedMessage());
-                            Toast.makeText(getApplicationContext(), "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
-                        }
-                    })
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "No se pudo realizar el registro", Toast.LENGTH_SHORT).show();
+                }
+            })
             {
                 @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    HashMap<String, String> parametros = new HashMap<>();
-                    parametros.put("name", nombre);
-                    parametros.put("email", mail);
-                    parametros.put("password", contra);
-                    return parametros;
-                }
-
-                /* @Override
                 public String getBodyContentType() {
                     return "application/json; charset=utf-8";
                 }
-                 */
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return savedata == null ? null : savedata.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        //Log.v("Unsupported Encoding while trying to get the bytes", data);
+                        return null;
+                    }
+                }
+
             };
 
             requestQueue.add(stringRequest);
 
         }
+    }
+
+    public void reformarDatosParaLogin(JSONObject data) throws JSONException {
+
+        String email = data.get("email").toString();
+        String contra = data.get("password").toString();
+
+        String datos = "{"+
+                "\"email\":" + "\"" + email + "\","+
+                "\"password\":" + "\"" + contra + "\""+
+                "}";
+        recibirSesion (datos);
     }
 
     public boolean isInternetAvailable() {

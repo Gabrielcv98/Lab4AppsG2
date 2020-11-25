@@ -68,13 +68,16 @@ public class Registro extends Fragment {
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String mail = txtUser.getText().toString();
-                String contra = txtPwd.getText().toString();
-                String nombre = txtNames.getText().toString();
+                String data = "{"+
+                        "\"name\":" + "\"" + txtNames.getText().toString() + "\","+
+                        "\"email\":" + "\"" + txtUser.getText().toString() + "\","+
+                        "\"password\":" + "\"" + txtPwd.getText().toString() + "\""+
+                        "}";
                 MainActivity m2 = (MainActivity) getActivity();
-                m2.datosRegistro(nombre, mail, contra);
+                m2.datosRegistro(data);
             }
         });
+
         return vista;
     }
 
