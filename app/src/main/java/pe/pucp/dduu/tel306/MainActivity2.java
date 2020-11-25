@@ -1,15 +1,14 @@
 package pe.pucp.dduu.tel306;
 
-import
-        androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class PreguntasActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preguntas);
+        setContentView(R.layout.activity_main2);
     }
 }
