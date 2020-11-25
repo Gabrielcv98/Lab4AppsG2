@@ -23,7 +23,7 @@
             android:textSize="24dp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName9"
+            android:id="@+id/emailRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -49,12 +49,12 @@
             android:ems="10"
             android:hint="Correo electrónico"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+            app:layout_constraintEnd_toEndOf="@+id/nombre"
+            app:layout_constraintStart_toStartOf="@+id/nombre"
+            app:layout_constraintTop_toBottomOf="@+id/nombre" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName11"
+            android:id="@+id/contraRegistro"
             android:layout_width="347dp"
             android:layout_height="51dp"
             android:layout_marginStart="32dp"
@@ -63,7 +63,7 @@
             android:backgroundTint="@color/colorPrimary"
             android:ems="10"
             android:hint="Contraseña"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="@+id/spinner2"
             app:layout_constraintStart_toStartOf="@+id/spinner2"
             app:layout_constraintTop_toBottomOf="@+id/spinner2" />
@@ -77,9 +77,9 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/boton_redondeado"
             android:text="ACEPTAR"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName11"
+            app:layout_constraintEnd_toEndOf="@+id/contraRegistro"
             app:layout_constraintHorizontal_bias="0.482"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName11"
+            app:layout_constraintStart_toStartOf="@+id/contraRegistro"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName12" />
 
         <Button

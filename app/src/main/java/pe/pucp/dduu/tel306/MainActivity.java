@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
                         public void onErrorResponse(VolleyError error) {
                             Intent intent = new Intent(MainActivity.this, PreguntasActivity.class);
                             startActivity(intent);
-
                         }
-                    }){
+                    })
+            {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String, String> parametros = new HashMap<>();
@@ -75,6 +75,54 @@ public class MainActivity extends AppCompatActivity {
                     parametros.put("password", contra);
                     return parametros;
                 }
+            };
+
+            requestQueue.add(stringRequest);
+
+        }
+    }
+
+    public void datosRegistro (final String nombre, final String mail, final String contra){
+
+        if(isInternetAvailable()){
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            String url = "http://34.236.191.118:3000/api/v1/users/new";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            //Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                            //startActivity(intent);
+                            Log.d("respuesta", response);
+                            Toast.makeText(getApplicationContext(), "Se registró usuario correctamente", Toast.LENGTH_SHORT).show();
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            //Log.d("error", error.getLocalizedMessage());
+                            Toast.makeText(getApplicationContext(), "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
+                        }
+                    })
+            {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    HashMap<String, String> parametros = new HashMap<>();
+                    parametros.put("name", nombre);
+                    parametros.put("email", mail);
+                    parametros.put("password", contra);
+                    return parametros;
+                }
+
+                /* @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+                 */
             };
 
             requestQueue.add(stringRequest);
