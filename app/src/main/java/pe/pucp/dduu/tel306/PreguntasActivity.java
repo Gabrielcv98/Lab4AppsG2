@@ -28,6 +28,13 @@ import com.google.gson.Gson;
 
 import pe.pucp.dduu.tel306.Entidades.Preguntas;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 public class PreguntasActivity extends AppCompatActivity {
 
     @Override
@@ -36,19 +43,24 @@ public class PreguntasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preguntas);
     }
 
+
     public void obtenerPreguntas(View view) {
         if (isInternetAvailable()) {
 
-              final int[] arrayId = new int[0];
+            final int[] arrayId = new int[0];
             final String[] arrayQuestionDate = new String[0];
             final String[] arrayQuestionText = new String[0];
 
-            String url = "http://34.236.191.118:3000/api/v1/questions";
+
+
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            String url = "http://34.236.191.118:3000/api/v1/questions/";
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+
                             Log.d("infoWS", response);
 
                             Gson gson = new Gson();
@@ -56,24 +68,23 @@ public class PreguntasActivity extends AppCompatActivity {
 
                             int index = 0;
                             for (Preguntas preguntas : preguntasarray) {
-                               arrayId[index] = preguntas.getId();
-                               arrayQuestionDate[index] = preguntas.getQuestionDate();
-                               arrayQuestionText[index]= preguntas.getQuestionText();
+                                arrayId[index] = preguntas.getId();
+                                arrayQuestionDate[index] = preguntas.getQuestionDate();
+                                arrayQuestionText[index] = preguntas.getQuestionText();
                                 index++;
                             }
 
 
-
                             Bundle bundle = new Bundle();
-                            bundle.putStringArray("questionDate" , arrayQuestionDate);
-                            bundle.putIntArray("questionId" , arrayId);
-                            bundle.putStringArray("questionText" , arrayQuestionText);
+                            bundle.putStringArray("questionDate", arrayQuestionDate);
+                            bundle.putIntArray("questionId", arrayId);
+                            bundle.putStringArray("questionText", arrayQuestionText);
 
                             BlankFragmentPreguntas fragmentPreguntas = new BlankFragmentPreguntas();
                             fragmentPreguntas.setArguments(bundle);
                             FragmentManager fm = getSupportFragmentManager();
                             FragmentTransaction ft = fm.beginTransaction();
-                            ft.add(R.id.containerPreguntas, fragmentPreguntas,null);
+                            ft.add(R.id.containerPreguntas, fragmentPreguntas, null);
                             ft.commit();
 
                         }
@@ -87,10 +98,11 @@ public class PreguntasActivity extends AppCompatActivity {
 
             };
 
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(stringRequest);
+
         }
     }
+
 
     public boolean isInternetAvailable() {
         ConnectivityManager connectivityManager =
@@ -130,6 +142,7 @@ public class PreguntasActivity extends AppCompatActivity {
         }
 
     }
+
 
 
 }
