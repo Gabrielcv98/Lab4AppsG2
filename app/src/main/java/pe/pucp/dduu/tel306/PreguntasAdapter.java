@@ -24,6 +24,10 @@ public class PreguntasAdapter extends RecyclerView.Adapter<PreguntasAdapter.View
         this.model = model;
 
     }
+
+    public PreguntasAdapter(List<Preguntas> listaPreguntas) {
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

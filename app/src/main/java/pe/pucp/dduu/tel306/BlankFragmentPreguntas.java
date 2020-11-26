@@ -56,9 +56,8 @@ public class BlankFragmentPreguntas extends Fragment {
         listaPreguntas1 = new ArrayList<>();
         recyclerViewPreguntas = vista.findViewById(R.id.recyclerViewPREGUNTA);
         recyclerViewPreguntas.setLayoutManager((new LinearLayoutManager(getContext())));
-        llenarLista();
 
-        preguntasAdapter = new PreguntasAdapter(getContext() , listaPreguntas);
+        preguntasAdapter = new PreguntasAdapter( listaPreguntas);
         recyclerViewPreguntas.setAdapter(preguntasAdapter);
 
         return vista;

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -18,6 +19,8 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import android.util.Log;
@@ -67,6 +70,7 @@ public class PreguntasActivity extends AppCompatActivity {
     }
 
     List<Preguntas> listPre ;
+
     public List obtenerPreguntas() {
         if (isInternetAvailable()) {
 
@@ -105,6 +109,19 @@ public class PreguntasActivity extends AppCompatActivity {
         return listPre;
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_cerrarsesion, menu);
+        return true;
+    }
+    //boton para eliminar y cerrar sesion
+    public void cerrarSesion (MenuItem item){
+        PreguntasActivity.this.deleteFile("archivo.json");
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+    }
 
     public void obtenerRespuestas(String id){
 
