@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Cerrar sesión"
+        android:title="@string/cerrar_sesi_n"
         android:onClick="cerrarSesion"
         app:showAsAction="ifRoom" />
 </menu>

@@ -9,5 +9,11 @@
     <string name="contrase_a">Contraseña</string>
     <string name="correo">Correo</string>
     <string name="iniciar_sesion_btntext">Iniciar Sesion</string>
+    <string name="textviewOpciones">TextView</string>
+    <string name="respuesta">respuesta</string>
+    <string name="pregunta">PREGUNTA</string>
+    <string name="_12_10_2020">12/10/2020</string>
+    <string name="_1">1</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
 
 </resources>

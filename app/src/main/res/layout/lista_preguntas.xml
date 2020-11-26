@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/idPregunta"
             android:layout_toEndOf="@+id/idPregunta"
-            android:layout_marginLeft="8dp"
-            android:text="PREGUNTA"
+            android:layout_marginStart="8dp"
+            android:text="@string/pregunta"
             android:textSize="15sp">
 
 
@@ -32,7 +32,7 @@
             android:layout_above="@+id/pregunta"
             android:layout_toEndOf="@+id/idPregunta"
             android:layout_marginLeft="8dp"
-            android:text="12/10/2020"
+            android:text="@string/_12_10_2020"
             android:textSize="10sp">
 
 
@@ -43,11 +43,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="1"
+            android:text="@string/_1"
             android:textSize="20sp"
             android:textStyle="bold">
         </TextView>
