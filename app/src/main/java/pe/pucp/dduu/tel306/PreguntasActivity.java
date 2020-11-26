@@ -153,6 +153,7 @@ public class PreguntasActivity extends AppCompatActivity {
         }){
 
         };
+        requestQueue.add(stringRequest);
 
 
                             /*Respuestas[] respuestas = pregunta.getAnswers();
