@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DEMOCRACIA PARA TODOS"
+        android:text="@string/democracia_para_todos"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:textStyle="bold"
@@ -33,7 +33,7 @@
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/colorPrimary"
         android:ems="10"
-        android:hint="Correo electrónico"
+        android:hint="@string/correo_electr_nico"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.551"
@@ -49,7 +49,7 @@
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/colorPrimary"
         android:ems="10"
-        android:hint="Contraseña"
+        android:hint="@string/contrase_a"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
         app:layout_constraintHorizontal_bias="0.0"
@@ -65,7 +65,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/boton_redondeado"
-        android:text="Iniciar sesión" />
+        android:text="@string/iniciar_sesi_n" />
 
     <Button
         android:id="@+id/buttonRegistrarseInicio"
@@ -75,7 +75,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/boton_registro"
-        android:text="Registrarse"
+        android:text="@string/registrarse"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent" />
 </LinearLayout>
