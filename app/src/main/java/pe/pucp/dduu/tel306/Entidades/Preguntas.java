@@ -7,6 +7,14 @@ public class Preguntas {
     private Respuestas[] answers;
 
 
+    public Preguntas(int id , String questionText, String questionDate){
+        this.id = id ;
+        this.questionText = questionText;
+        this.questionDate = questionDate;
+    }
+
+
+
     public int getId() {
         return id;
     }
