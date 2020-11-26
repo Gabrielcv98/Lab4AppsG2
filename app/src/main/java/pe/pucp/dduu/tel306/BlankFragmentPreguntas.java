@@ -26,7 +26,7 @@ public class BlankFragmentPreguntas extends Fragment {
 
     PreguntasAdapter preguntasAdapter;
     RecyclerView recyclerViewPreguntas;
-    ArrayList<Preguntas> listaPreguntas;
+    ArrayList<Preguntas> listaPreguntas1;
 
 
     public BlankFragmentPreguntas() {
@@ -53,14 +53,18 @@ public class BlankFragmentPreguntas extends Fragment {
        List<Preguntas> listaPreguntas =  pA.obtenerPreguntas();
 
         View vista = inflater.inflate(R.layout.fragment_blank_preguntas, container, false);
-        recyclerViewPreguntas = recyclerViewPreguntas.findViewById(R.id.recyclerViewPREGUNTA);
-
-
-
+        listaPreguntas1 = new ArrayList<>();
+        recyclerViewPreguntas = vista.findViewById(R.id.recyclerViewPREGUNTA);
         recyclerViewPreguntas.setLayoutManager((new LinearLayoutManager(getContext())));
+        llenarLista();
+
         preguntasAdapter = new PreguntasAdapter(getContext() , listaPreguntas);
         recyclerViewPreguntas.setAdapter(preguntasAdapter);
 
         return vista;
+    }
+
+    private void llenarLista() {
+        //listaPreguntas1.add()
     }
 }
