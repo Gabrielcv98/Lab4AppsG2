@@ -51,22 +51,24 @@ import java.util.List;
 import pe.pucp.dduu.tel306.Entidades.Preguntas;
 import pe.pucp.dduu.tel306.Entidades.Respuestas;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class PreguntasActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preguntas);
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.preguntasContainer, new BlankFragmentPreguntas()).commit();
+
     }
 
-
-    public void obtenerPreguntas(View view) {
+    List<Preguntas> listPre ;
+    public List obtenerPreguntas() {
         if (isInternetAvailable()) {
-
-            final int[] arrayId = new int[0];
-            final String[] arrayQuestionDate = new String[0];
-            final String[] arrayQuestionText = new String[0];
-
 
 
             RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -81,44 +83,28 @@ public class PreguntasActivity extends AppCompatActivity {
 
                             Gson gson = new Gson();
                             Preguntas[] preguntasarray = gson.fromJson(response, Preguntas[].class);
-
-                            int index = 0;
-                            for (Preguntas preguntas : preguntasarray) {
-                                arrayId[index] = preguntas.getId();
-                                arrayQuestionDate[index] = preguntas.getQuestionDate();
-                                arrayQuestionText[index] = preguntas.getQuestionText();
-                                index++;
-                            }
-
-
-                            Bundle bundle = new Bundle();
-                            bundle.putStringArray("questionDate", arrayQuestionDate);
-                            bundle.putIntArray("questionId", arrayId);
-                            bundle.putStringArray("questionText", arrayQuestionText);
-
-                            BlankFragmentPreguntas fragmentPreguntas = new BlankFragmentPreguntas();
-                            fragmentPreguntas.setArguments(bundle);
-                            FragmentManager fm = getSupportFragmentManager();
-                            FragmentTransaction ft = fm.beginTransaction();
-                            ft.add(R.id.containerPreguntas, fragmentPreguntas, null);
-                            ft.commit();
-
+                            List<Preguntas> listP = Arrays.asList(preguntasarray);
+                            listPre = listP;
                         }
+
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
                         }
-                    }) {
+                    });
 
-            };
 
             requestQueue.add(stringRequest);
 
+
+
         }
 
+        return listPre;
     }
+
 
     public void obtenerRespuestas(String id){
 
@@ -136,12 +122,12 @@ public class PreguntasActivity extends AppCompatActivity {
                 if (listarespuestas.isEmpty()){
                     Toast.makeText(PreguntasActivity.this, "no hay respuestas", Toast.LENGTH_SHORT).show();
                 }else {
-                    FragmentManager fm = getSupportFragmentManager();
-                    Fragment fragment = fm.findFragmentById(R.id.fragment2);
+                    /*FragmentManager fm = getSupportFragmentManager();
+                    Fragment fragment = fm.findFragmentById(R.id.);
                     if (fragment != null){
                         fm.beginTransaction().remove(fragment).commit();
                     }
-                    FragmentRespuestas fragmentRespuestas = FragmentRespuestas.newInstance(listarespuestas);
+                    FragmentRespuestas fragmentRespuestas = FragmentRespuestas.newInstance(listarespuestas);*/
 
                 }
             }
@@ -159,6 +145,7 @@ public class PreguntasActivity extends AppCompatActivity {
                             /*Respuestas[] respuestas = pregunta.getAnswers();
                             ListaOpcionesAdapter adapter = new ListaOpcionesAdapter(pregunta.getAnswers(),
                                     PreguntasActivity.this);*/
+
 
 
     }

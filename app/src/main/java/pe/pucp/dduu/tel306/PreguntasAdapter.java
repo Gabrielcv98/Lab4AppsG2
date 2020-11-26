@@ -10,15 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import pe.pucp.dduu.tel306.Entidades.Preguntas;
 
 public class PreguntasAdapter extends RecyclerView.Adapter<PreguntasAdapter.ViewHolder> {
 
     LayoutInflater inflater;
-    ArrayList<Preguntas> model;
+    List<Preguntas> model;
 
-    public  PreguntasAdapter(Context context, ArrayList<Preguntas> model){
+    public  PreguntasAdapter(Context context, List<Preguntas> model){
         this.inflater = LayoutInflater.from(context);
         this.model = model;
 
@@ -27,7 +28,7 @@ public class PreguntasAdapter extends RecyclerView.Adapter<PreguntasAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.lista_preguntas,parent , false);
-        return null;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class PreguntasAdapter extends RecyclerView.Adapter<PreguntasAdapter.View
 
     @Override
     public int getItemCount() {
-        return 0;
+        return model.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
