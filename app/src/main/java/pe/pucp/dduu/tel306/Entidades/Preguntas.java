@@ -4,7 +4,7 @@ public class Preguntas {
     private int id ;
     private String questionText;
     private String questionDate;
-    private Respuestas answers;
+    private Respuestas[] answers;
 
 
     public int getId() {
@@ -32,11 +32,11 @@ public class Preguntas {
     }
 
 
-    public Respuestas getAnswers() {
+    public Respuestas[] getAnswers() {
         return answers;
     }
 
-    public void setAnswers(Respuestas answers) {
+    public void setAnswers(Respuestas[] answers) {
         this.answers = answers;
     }
 }

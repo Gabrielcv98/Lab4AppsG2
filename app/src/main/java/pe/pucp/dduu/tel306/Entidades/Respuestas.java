@@ -19,4 +19,11 @@ public class Respuestas {
     public void setAnswerText(String answerText) {
         this.answerText = answerText;
     }
+
+
+    public Respuestas(int id, String answerText) {
+        this.id = id;
+        this.answerText = answerText;
+    }
+    public Respuestas(){}
 }
