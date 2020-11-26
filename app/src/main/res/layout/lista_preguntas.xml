@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/pregunta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/idPregunta"
+            android:layout_toEndOf="@+id/idPregunta"
+            android:layout_marginLeft="8dp"
+            android:text="PREGUNTA"
+            android:textSize="15sp">
+
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/fechaPregunta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/pregunta"
+            android:layout_toEndOf="@+id/idPregunta"
+            android:layout_marginLeft="8dp"
+            android:text="12/10/2020"
+            android:textSize="10sp">
+
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/idPregunta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="1"
+            android:textSize="20sp"
+            android:textStyle="bold">
+        </TextView>
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
